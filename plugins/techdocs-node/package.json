@@ -63,7 +63,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.19.0-next.2",
+    "@harness/backstage-cli": "^0.19.0-next.2",
     "@types/fs-extra": "^9.0.5",
     "@types/js-yaml": "^4.0.0",
     "@types/mime-types": "^2.1.0",

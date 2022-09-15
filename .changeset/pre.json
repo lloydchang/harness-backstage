@@ -14,7 +14,7 @@
     "@backstage/backend-test-utils": "0.1.27",
     "@backstage/catalog-client": "1.0.4",
     "@backstage/catalog-model": "1.1.0",
-    "@backstage/cli": "0.18.1",
+    "@harness/backstage-cli": "0.18.1",
     "@backstage/cli-common": "0.1.9",
     "@backstage/codemods": "0.1.38",
     "@backstage/config": "1.0.1",

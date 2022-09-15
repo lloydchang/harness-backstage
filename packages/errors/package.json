@@ -37,7 +37,7 @@
     "serialize-error": "^8.0.1"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.19.0-next.1"
+    "@harness/backstage-cli": "^0.19.0-next.1"
   },
   "files": [
     "dist"

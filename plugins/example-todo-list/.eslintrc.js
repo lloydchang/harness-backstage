@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [require.resolve('@backstage/cli/config/eslint')],
+  extends: [require.resolve('@harness/backstage-cli/config/eslint')],
   rules: {
     'import/no-extraneous-dependencies': [
       'error',

@@ -47,7 +47,7 @@ import { version as scaffolderBackend } from '../../../../plugins/scaffolder-bac
 
 export const packageVersions: Record<string, string> = {
   '@backstage/backend-common': backendCommon,
-  '@backstage/cli': cli,
+  '@harness/backstage-cli': cli,
   '@backstage/config': config,
   '@backstage/core-app-api': coreAppApi,
   '@backstage/core-components': coreComponents,

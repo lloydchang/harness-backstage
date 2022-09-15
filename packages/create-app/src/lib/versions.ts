@@ -87,7 +87,7 @@ export const packageVersions = {
   '@backstage/backend-tasks': backendTasks,
   '@backstage/catalog-client': catalogClient,
   '@backstage/catalog-model': catalogModel,
-  '@backstage/cli': cli,
+  '@harness/backstage-cli': cli,
   '@backstage/config': config,
   '@backstage/core-app-api': coreAppApi,
   '@backstage/core-components': coreComponents,

@@ -19,14 +19,14 @@ import { resolve as resolvePath } from 'path';
 import { PackageGraph } from '../../lib/monorepo';
 import { runPlain } from '../../lib/run';
 
-const PREFIX = `module.exports = require('@backstage/cli/config/eslint-factory')`;
+const PREFIX = `module.exports = require('@harness/backstage-cli/config/eslint-factory')`;
 
 export async function command() {
   const packages = await PackageGraph.listTargetPackages();
 
   const oldConfigs = [
-    require.resolve('@backstage/cli/config/eslint.js'),
-    require.resolve('@backstage/cli/config/eslint.backend.js'),
+    require.resolve('@harness/backstage-cli/config/eslint.js'),
+    require.resolve('@harness/backstage-cli/config/eslint.backend.js'),
   ];
 
   const configPaths = new Array<string>();

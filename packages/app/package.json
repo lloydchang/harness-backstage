@@ -9,7 +9,6 @@
   "dependencies": {
     "@backstage/app-defaults": "^1.0.6-next.1",
     "@backstage/catalog-model": "^1.1.0",
-    "@backstage/cli": "^0.19.0-next.2",
     "@backstage/config": "^1.0.1",
     "@backstage/core-app-api": "^1.1.0-next.2",
     "@backstage/core-components": "^0.11.1-next.2",
@@ -61,6 +60,7 @@
     "@backstage/plugin-todo": "^0.2.11-next.2",
     "@backstage/plugin-user-settings": "^0.4.8-next.2",
     "@backstage/theme": "^0.2.16",
+    "@harness/backstage-cli": "^0.19.0-next.2",
     "@internal/plugin-catalog-customized": "0.0.2-next.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",

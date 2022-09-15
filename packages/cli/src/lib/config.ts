@@ -52,7 +52,7 @@ export async function loadCliConfig(options: Options) {
       localPackageNames = Array.from(
         graph.collectPackageNames([options.fromPackage], node => {
           // Workaround for Backstage main repo only, since the CLI has some artificial devDependencies
-          if (node.name === '@backstage/cli') {
+          if (node.name === '@harness/backstage-cli') {
             return undefined;
           }
           return node.localDependencies.keys();

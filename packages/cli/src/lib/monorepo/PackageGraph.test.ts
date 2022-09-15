@@ -67,7 +67,7 @@ describe('PackageGraph', () => {
   it('is able to construct a graph from this repo', async () => {
     const { packages } = await getPackages(__dirname);
     const graph = PackageGraph.fromPackages(packages);
-    expect(graph.has('@backstage/cli')).toBe(true);
+    expect(graph.has('@harness/backstage-cli')).toBe(true);
   });
 
   it('creates a graph', () => {

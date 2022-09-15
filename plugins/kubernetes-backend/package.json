@@ -62,7 +62,7 @@
     "yn": "^4.0.0"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.19.0-next.2",
+    "@harness/backstage-cli": "^0.19.0-next.2",
     "@types/aws4": "^1.5.1",
     "aws-sdk-mock": "^5.2.1",
     "supertest": "^6.1.3"

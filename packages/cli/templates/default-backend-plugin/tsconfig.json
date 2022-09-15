@@ -1,5 +1,5 @@
 {
-  "extends": "@backstage/cli/config/tsconfig.json",
+  "extends": "@harness/backstage-cli/config/tsconfig.json",
   "include": [
     "src",
     "dev",

@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@backstage/backend-test-utils": "^0.1.28-next.2",
-    "@backstage/cli": "^0.19.0-next.2",
+    "@harness/backstage-cli": "^0.19.0-next.2",
     "lodash": "^4.17.21",
     "msw": "^0.47.0",
     "uuid": "^8.0.0"

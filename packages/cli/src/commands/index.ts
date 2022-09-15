@@ -180,7 +180,7 @@ export function registerMigrateCommand(program: Command) {
   command
     .command('package-lint-configs')
     .description(
-      'Migrates all packages to use @backstage/cli/config/eslint-factory',
+      'Migrates all packages to use @harness/backstage-cli/config/eslint-factory',
     )
     .action(
       lazy(() => import('./migrate/packageLintConfigs').then(m => m.command)),

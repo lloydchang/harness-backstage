@@ -33,8 +33,8 @@
     "react-use": "^17.2.4"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.19.0-next.1",
     "@backstage/dev-utils": "^1.0.6-next.1",
+    "@harness/backstage-cli": "^0.19.0-next.1",
     "@testing-library/jest-dom": "^5.10.1",
     "@types/react": "^16.13.1 || ^17.0.0",
     "cross-fetch": "^3.1.5"

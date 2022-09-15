@@ -1,3 +1,6 @@
-module.exports = require('@backstage/cli/config/eslint-factory')(__dirname, {
-  ignorePatterns: ['static/**'],
-});
+module.exports = require('@harness/backstage-cli/config/eslint-factory')(
+  __dirname,
+  {
+    ignorePatterns: ['static/**'],
+  },
+);

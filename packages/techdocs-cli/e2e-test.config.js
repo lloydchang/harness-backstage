@@ -16,7 +16,9 @@
 
 const path = require('path');
 
-module.exports = require('@backstage/cli/config/jest').then(baseConfig => ({
-  ...baseConfig,
-  rootDir: path.resolve(__dirname, 'e2e-tests'),
-}));
+module.exports = require('@harness/backstage-cli/config/jest').then(
+  baseConfig => ({
+    ...baseConfig,
+    rootDir: path.resolve(__dirname, 'e2e-tests'),
+  }),
+);

@@ -118,7 +118,7 @@ describe('mapDependencies', () => {
         name: 'b',
         dependencies: {
           '@backstage/core': '3',
-          '@backstage/cli': '^0',
+          '@harness/backstage-cli': '^0',
         },
       }),
     });
@@ -141,7 +141,7 @@ describe('mapDependencies', () => {
         ],
       ],
       [
-        '@backstage/cli',
+        '@harness/backstage-cli',
         [
           {
             name: 'b',

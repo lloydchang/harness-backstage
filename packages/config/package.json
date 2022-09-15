@@ -36,8 +36,8 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@backstage/cli": "^0.19.0-next.1",
     "@backstage/test-utils": "^1.2.0-next.1",
+    "@harness/backstage-cli": "^0.19.0-next.1",
     "@types/node": "^16.0.0"
   },
   "files": [

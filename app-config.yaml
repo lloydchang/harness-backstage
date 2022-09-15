@@ -52,6 +52,12 @@ backend:
 
 # See README.md in the proxy-backend plugin for information on the configuration format
 proxy:
+  '/harness':
+    target: 'https://app.harness.io/'
+    headers:
+      'x-api-key': 'pat.dh-iBL35SqqpuqJF0yDjpQ.62fa234c97851d542623dfc2.TtIOwZyQ8TT6YlspGjzw'
+      'x-harness-token': 'YxROEGRoLWlCTDM1U3FxcHVxSkYweURqcFGRPW4TR7cmMVg0xQ2JQbbXV4d1BThpNko3ITz-ihlk4Q=='
+
   '/circleci/api':
     target: https://circleci.com/api/v1.1
     headers:

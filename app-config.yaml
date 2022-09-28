@@ -37,7 +37,7 @@ backend:
   cache:
     store: memory
   cors:
-    origin: http://localhost:3000
+    origin: https://localhost:8181
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
   csp:

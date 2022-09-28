@@ -20,7 +20,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin';
 import { RunScriptWebpackPlugin } from 'run-script-webpack-plugin';
-import webpack, { ProvidePlugin } from 'webpack';
+import webpack, { ProvidePlugin, container } from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 import { isChildPath } from '@backstage/cli-common';
 import { getPackages } from '@manypkg/get-packages';
@@ -35,6 +35,8 @@ import { paths as cliPaths } from '../../lib/paths';
 import { runPlain } from '../run';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import pickBy from 'lodash/pickBy';
+
+const ModuleFederationPlugin = container.ModuleFederationPlugin
 
 export function resolveBaseUrl(config: Config): URL {
   const baseUrl = config.getString('app.baseUrl');
@@ -128,6 +130,22 @@ export async function createConfig(
     }),
   );
 
+  plugins.push(new ModuleFederationPlugin({
+    name: 'idp',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './MicroFrontendApp': './src/App.tsx'
+    },
+    shared: {
+      'react': {
+        singleton: true
+      },
+      'react-dom': {
+        singleton: true
+      }
+    }
+  }))
+
   const buildInfo = await readBuildInfo();
   plugins.push(
     new webpack.DefinePlugin({
@@ -149,7 +167,7 @@ export async function createConfig(
   return {
     mode: isDev ? 'development' : 'production',
     profile: false,
-    optimization: optimization(options),
+    // optimization: optimization(options),
     bail: false,
     performance: {
       hints: false, // we check the gzip size instead
@@ -190,7 +208,7 @@ export async function createConfig(
     },
     output: {
       path: paths.targetDist,
-      publicPath: `${publicPath}/`,
+      publicPath: 'auto', // `${publicPath}/`,
       filename: isDev ? '[name].js' : 'static/[name].[fullhash:8].js',
       chunkFilename: isDev
         ? '[name].chunk.js'

@@ -62,6 +62,7 @@
     "@backstage/plugin-todo": "workspace:^",
     "@backstage/plugin-user-settings": "workspace:^",
     "@backstage/theme": "workspace:^",
+    "@harness/microfrontends": "^1.9.0",
     "@internal/plugin-catalog-customized": "workspace:^",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",

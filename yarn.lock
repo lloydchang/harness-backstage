@@ -9339,6 +9339,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@harness/microfrontends@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@harness/microfrontends@npm:1.9.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40harness%2Fmicrofrontends%2F1.9.0%2F23127574d9038a4a655baa5f2d7951646c8a0687"
+  checksum: eccf5bdf2d3a8006d5edc481be100562889784feed308bbe6057736ddc013f5aed0abdcc2e18976ef9f64dcf7ea5950257e8b4510624d829f33e3ba86241e5c3
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.10.4":
   version: 0.10.4
   resolution: "@humanwhocodes/config-array@npm:0.10.4"
@@ -22004,6 +22011,7 @@ __metadata:
     "@backstage/plugin-user-settings": "workspace:^"
     "@backstage/test-utils": "workspace:^"
     "@backstage/theme": "workspace:^"
+    "@harness/microfrontends": ^1.9.0
     "@internal/plugin-catalog-customized": "workspace:^"
     "@material-ui/core": ^4.12.2
     "@material-ui/icons": ^4.9.1

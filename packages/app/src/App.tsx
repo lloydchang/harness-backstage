@@ -108,6 +108,7 @@ import { PlaylistIndexPage } from '@backstage/plugin-playlist';
 import { TwoColumnLayout } from './components/scaffolder/customScaffolderLayouts';
 import { HashRouter } from 'react-router-dom';
 import type { ChildAppProps } from '@harness/microfrontends';
+import { Root } from './components/Root';
 
 const app = createApp({
   apis,
@@ -141,13 +142,14 @@ const AppProvider = app.getProvider();
 const AppRouter = app.getRouter();
 
 const App = (props: ChildAppProps) => {
-  const basename = props.renderUrl;
+  const basename = props.renderUrl || '';
   console.log({ basename });
   return (
     <AppProvider>
       <AlertDisplay />
       <OAuthRequestDialog />
       <AppRouter>
+        {/* <Root> */}
         <FlatRoutes>
           <Route
             path={`${basename}/`}
@@ -165,7 +167,7 @@ const App = (props: ChildAppProps) => {
             {entityPage}
           </Route>
           <Route
-            path="/catalog-import"
+            path={`${basename}/catalog-import`}
             element={
               <RequirePermission permission={catalogEntityCreatePermission}>
                 <CatalogImportPage />
@@ -173,7 +175,7 @@ const App = (props: ChildAppProps) => {
             }
           />
           <Route
-            path="/catalog-graph"
+            path={`${basename}/catalog-graph`}
             element={
               <CatalogGraphPage
                 initialState={{
@@ -200,9 +202,9 @@ const App = (props: ChildAppProps) => {
               />
             }
           />
-          <Route path="/docs" element={<TechDocsIndexPage />} />
+          <Route path={`${basename}/docs`} element={<TechDocsIndexPage />} />
           <Route
-            path="/docs/:namespace/:kind/:name/*"
+            path={`${basename}/docs/:namespace/:kind/:name/*`}
             element={<TechDocsReaderPage />}
           >
             {techDocsPage}
@@ -213,7 +215,7 @@ const App = (props: ChildAppProps) => {
             </TechDocsAddons>
           </Route>
           <Route
-            path="/create"
+            path={`${basename}/create`}
             element={
               <ScaffolderPage
                 defaultPreviewTemplate={defaultPreviewTemplate}
@@ -235,7 +237,7 @@ const App = (props: ChildAppProps) => {
             </ScaffolderLayouts>
           </Route>
           <Route
-            path="/create/next"
+            path={`${basename}/create/next`}
             element={
               <NextScaffolderPage
                 groups={[
@@ -252,40 +254,53 @@ const App = (props: ChildAppProps) => {
               <DelayingComponentFieldExtension />
             </ScaffolderFieldExtensions>
           </Route>
-          <Route path="/explore" element={<ExplorePage />} />
+          <Route path={`${basename}/explore`} element={<ExplorePage />} />
           <Route
-            path="/tech-radar"
+            path={`${basename}/tech-radar`}
             element={<TechRadarPage width={1500} height={800} />}
           />
-          <Route path="/graphiql" element={<GraphiQLPage />} />
-          <Route path="/lighthouse" element={<LighthousePage />} />
-          <Route path="/api-docs" element={<ApiExplorerPage />} />
-          <Route path="/gcp-projects" element={<GcpProjectsPage />} />
-          <Route path="/newrelic" element={<NewRelicPage />} />
-          <Route path="/search" element={<SearchPage />}>
+          <Route path={`${basename}/graphiql`} element={<GraphiQLPage />} />
+          <Route path={`${basename}/lighthouse`} element={<LighthousePage />} />
+          <Route path={`${basename}/api-docs`} element={<ApiExplorerPage />} />
+          <Route
+            path={`${basename}/gcp-projects`}
+            element={<GcpProjectsPage />}
+          />
+          <Route path={`${basename}/newrelic`} element={<NewRelicPage />} />
+          <Route path={`${basename}/search`} element={<SearchPage />}>
             {searchPage}
           </Route>
-          <Route path="/cost-insights" element={<CostInsightsPage />} />
           <Route
-            path="/cost-insights/investigating-growth"
+            path={`${basename}/cost-insights`}
+            element={<CostInsightsPage />}
+          />
+          <Route
+            path={`${basename}/cost-insights/investigating-growth`}
             element={<CostInsightsProjectGrowthInstructionsPage />}
           />
           <Route
-            path="/cost-insights/labeling-jobs"
+            path={`${basename}/cost-insights/labeling-jobs"`}
             element={<CostInsightsLabelDataflowInstructionsPage />}
           />
-          <Route path="/settings" element={<UserSettingsPage />}>
-            <UserSettingsTab path="/advanced" title="Advanced">
+          <Route path={`${basename}/settings`} element={<UserSettingsPage />}>
+            <UserSettingsTab path={`${basename}/advanced`} title="Advanced">
               <AdvancedSettings />
             </UserSettingsTab>
           </Route>
           <Route
-            path="/azure-pull-requests"
+            path={`${basename}/azure-pull-requests`}
             element={<AzurePullRequestsPage />}
           />
-          <Route path="/apache-airflow" element={<ApacheAirflowPage />} />
-          <Route path="/playlist" element={<PlaylistIndexPage />} />
+          <Route
+            path={`${basename}/apache-airflow`}
+            element={<ApacheAirflowPage />}
+          />
+          <Route
+            path={`${basename}/playlist`}
+            element={<PlaylistIndexPage />}
+          />
         </FlatRoutes>
+        {/* </Root> */}
       </AppRouter>
     </AppProvider>
   );

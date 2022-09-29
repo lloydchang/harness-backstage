@@ -28,11 +28,7 @@ import {
 } from '@backstage/catalog-model';
 import { createApp } from '@backstage/app-defaults';
 import { FlatRoutes } from '@backstage/core-app-api';
-import {
-  AlertDisplay,
-  OAuthRequestDialog,
-  SignInPage,
-} from '@backstage/core-components';
+import { AlertDisplay, OAuthRequestDialog } from '@backstage/core-components';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import { AzurePullRequestsPage } from '@backstage/plugin-azure-devops';
 
@@ -90,14 +86,12 @@ import { Navigate, Route } from 'react-router';
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { homePage } from './components/home/HomePage';
-// import { Root } from './components/Root';
 import {
   DelayingComponentFieldExtension,
   LowerCaseValuePickerFieldExtension,
 } from './components/scaffolder/customScaffolderExtensions';
 import { defaultPreviewTemplate } from './components/scaffolder/defaultPreviewTemplate';
 import { searchPage } from './components/search/SearchPage';
-// import { providers } from './identityProviders';
 import * as plugins from './plugins';
 
 import { techDocsPage } from './components/techdocs/TechDocsPage';
@@ -108,7 +102,6 @@ import { PlaylistIndexPage } from '@backstage/plugin-playlist';
 import { TwoColumnLayout } from './components/scaffolder/customScaffolderLayouts';
 import { HashRouter } from 'react-router-dom';
 import type { ChildAppProps } from '@harness/microfrontends';
-import { Root } from './components/Root';
 
 const app = createApp({
   apis,
@@ -143,13 +136,12 @@ const AppRouter = app.getRouter();
 
 const App = (props: ChildAppProps) => {
   const basename = props.renderUrl || '';
-  console.log({ basename });
+
   return (
     <AppProvider>
       <AlertDisplay />
       <OAuthRequestDialog />
       <AppRouter>
-        {/* <Root> */}
         <FlatRoutes>
           <Route
             path={`${basename}/`}
@@ -300,7 +292,6 @@ const App = (props: ChildAppProps) => {
             element={<PlaylistIndexPage />}
           />
         </FlatRoutes>
-        {/* </Root> */}
       </AppRouter>
     </AppProvider>
   );

@@ -159,6 +159,8 @@ export const EntityListProvider = <EntityFilters extends DefaultEntityFilters>({
         compact(Object.values(outputState.appliedFilters)),
       );
 
+      
+
       // const queryParams = Object.keys(requestedFilters).reduce(
       //   (params, key) => {
       //     const filter: EntityFilter | undefined =
@@ -193,6 +195,8 @@ export const EntityListProvider = <EntityFilters extends DefaultEntityFilters>({
         });
       }
 
+      // If query params is used, backstage keeps appending to previous params
+      
       if (isMounted()) {
         // const oldParams = qs.parse(location.search, {
         //   ignoreQueryPrefix: true,

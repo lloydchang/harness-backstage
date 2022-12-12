@@ -170,7 +170,6 @@ describe('ProxiedSignInIdentity', () => {
       const serverCalled = jest.fn().mockImplementation(req => {
         req1 = req;
       });
-      const getHeaders = jest.fn().mockResolvedValue({ 'x-foo': 'bars' });
 
       worker.events.on('request:match', serverCalled);
       worker.use(
@@ -195,6 +194,7 @@ describe('ProxiedSignInIdentity', () => {
         ),
       );
 
+      const getHeaders = jest.fn().mockResolvedValue({ 'x-foo': 'bars' });
       const identity = new ProxiedSignInIdentity({
         provider: 'foo',
         discoveryApi: { getBaseUrl },

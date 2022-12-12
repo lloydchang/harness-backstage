@@ -165,8 +165,12 @@ describe('ProxiedSignInIdentity', () => {
     });
 
     it('handles optional headers correctly', async () => {
+      let req1: Request;
       const getBaseUrl = jest.fn();
-      const serverCalled = jest.fn();
+      const serverCalled = jest.fn().mockImplementation(req => {
+        req1 = req;
+      });
+      const getHeaders = jest.fn().mockResolvedValue({ 'x-foo': 'bars' });
 
       worker.events.on('request:match', serverCalled);
       worker.use(
@@ -174,7 +178,19 @@ describe('ProxiedSignInIdentity', () => {
           res(
             ctx.status(200),
             ctx.set('Content-Type', 'application/json'),
-            ctx.json({ foo: 'bar' }),
+            // dummy response as we are only testing the request in this test
+            ctx.json({
+              providerInfo: {},
+              profile: {},
+              backstageIdentity: {
+                token: '',
+                identity: {
+                  ownershipEntityRefs: [''],
+                  userEntityRef: '',
+                  type: 'user',
+                },
+              },
+            }),
           ),
         ),
       );
@@ -182,9 +198,7 @@ describe('ProxiedSignInIdentity', () => {
       const identity = new ProxiedSignInIdentity({
         provider: 'foo',
         discoveryApi: { getBaseUrl },
-        getHeaders: () => {
-          return Promise.resolve({ 'x-foo': 'bar' });
-        },
+        getHeaders: getHeaders,
       });
 
       getBaseUrl.mockResolvedValue('http://example.com/api/auth');
@@ -192,12 +206,14 @@ describe('ProxiedSignInIdentity', () => {
       await identity.start(); // should not throw
       expect(getBaseUrl).toHaveBeenCalledTimes(1);
       expect(getBaseUrl).toHaveBeenLastCalledWith('auth');
+      expect(getHeaders).toHaveBeenCalledTimes(1);
       expect(serverCalled).toHaveBeenCalledTimes(1);
-      expect(serverCalled).toHaveBeenLastCalledWith(
-        expect.objectContaining({
-          headers: expect.objectContaining({ 'x-foo': 'bar' }),
-        }),
-      );
+
+      expect(req1).not.toBeUndefined();
+      // required header should be present
+      expect(req1!.headers.get('x-requested-with')).toEqual('XMLHttpRequest');
+      // optional header should be present when passed
+      expect(req1!.headers.get('x-foo')).toEqual('bars');
     });
   });
 });

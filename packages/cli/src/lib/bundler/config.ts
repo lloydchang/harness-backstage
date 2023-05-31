@@ -37,10 +37,11 @@ import ESLintPlugin from 'eslint-webpack-plugin';
 import pickBy from 'lodash/pickBy';
 import yn from 'yn';
 import { readEntryPoints } from '../entryPoints';
+import { RetryChunkLoadPlugin } from 'webpack-retry-chunk-load-plugin';
 
 const BUILD_CACHE_ENV_VAR = 'BACKSTAGE_CLI_EXPERIMENTAL_BUILD_CACHE';
 
-const ModuleFederationPlugin = container.ModuleFederationPlugin
+const ModuleFederationPlugin = container.ModuleFederationPlugin;
 
 export function resolveBaseUrl(config: Config): URL {
   const baseUrl = config.getString('app.baseUrl');
@@ -134,21 +135,26 @@ export async function createConfig(
     }),
   );
 
-  plugins.push(new ModuleFederationPlugin({
-    name: 'idp',
-    filename: 'remoteEntry.js',
-    exposes: {
-      './MicroFrontendApp': './src/App.tsx'
-    },
-    shared: {
-      'react': {
-        singleton: true
+  plugins.push(
+    new ModuleFederationPlugin({
+      name: 'idp',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './MicroFrontendApp': './src/App.tsx',
       },
-      'react-dom': {
-        singleton: true
-      }
-    }
-  }))
+      shared: {
+        react: {
+          singleton: true,
+        },
+        'react-dom': {
+          singleton: true,
+        },
+      },
+    }),
+    new RetryChunkLoadPlugin({
+      maxRetries: 3,
+    }),
+  );
 
   const buildInfo = await readBuildInfo();
   plugins.push(
